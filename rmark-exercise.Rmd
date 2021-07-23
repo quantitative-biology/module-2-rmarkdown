@@ -1,0 +1,137 @@
+---
+title: "Rmarkdown exercise"
+author: "Andrew Edwards"
+date: "23/07/2021"
+output:
+  html_document:
+fontsize: 12pt
+---
+
+<!-- rmark-exercise.Rmd - Rmarkdown code for the Rmarkdown exercise. The "<--"
+     is how you start and end a comment (it is the .html format for comments).
+-->
+
+# Simple Rmarkdown exercise
+<!-- The # here is Rmarkdown for 'Section Heading' -->
+
+Run this code by clicking the `knitr` button in RStudio (TODO YES???) or
+`rmarkdown::render("rmark-exercise.Rmd")` in R.
+
+To understand what is happening you should compare the code in the
+`rmark-exercise.Rmd` file with the resulting output in the `rmark-exercise.html`
+file. Comments for understanding will be done in the `.Rmd` file and should be
+read. We will make the resulting output in the `.html` file focus on the data
+generation and analysis.
+
+<!-- This is how you do a chunk of R code, and call it "setup": -->
+```{r setup}
+# This option sets the R output in your document to not have ## before it, which
+#  is the default. You can customise pretty much anything (see the Rmarkdown
+#  book). It also caches the output -- more about that later.
+knitr::opts_chunk$set(comment = "",
+                      cache = TRUE)
+```
+
+<!-- Note that because the above chunk is R code, the `#` symbol represents a
+comment. Your text editor should hopefully colour code this file so you can
+distinguish Rmarkdown headings and R comments. -->
+
+## Generate data
+
+First we'll need some libraries:
+```{r rmarklibs, message=FALSE, warning=FALSE}
+library(kableExtra)
+library(dplyr)
+library(xtable)
+```
+
+Now generate some data:
+```{r generate}
+set.seed(42)
+n <- 50                      # sample size
+x <- 1:n
+y <- 10*x + rnorm(n, 0, 10)
+n
+```
+
+We can automatically say that the maximum value of the data is `r max(y)`, or round it to a
+whole number: the maximum value of the data is `r round(max(y))`.
+<!-- The ` r` at
+     the start of each of these tells Rmarkdown to evaluate the remaining code in
+     R. You use this for short bits of code that you want within sentences, and use
+     chunks for larger bits of code.
+-->
+
+## Show some of the data
+
+Let's combine the data in a tibble (think of it as a data frame if you don't
+know what that is):
+```{r showdata}
+data <- tibble(x, y)
+data
+```
+(only the first 10 rows get printed here thanks to dplyr).
+
+To have a basic table, we can do
+```{r kable}
+kable(data[1:10,])
+```
+
+To make it look a bit better we can add an option
+```{r kable2}
+kable(data[1:10,]) %>%
+  kable_material("striped")
+```
+
+You can set all sorts of formatting (and do it once at the start for all
+tables) with the `kable` and `kableExtra` packages (see the Rmarkdown book), so
+don't worry about formatting for now.
+
+## Plot then fit a regression data
+
+Now to plot the data:
+
+```{r plot}
+plot(x, y)
+```
+
+To fit and then print the summary regression output from R:
+
+```{r regression}
+fit <- lm(y ~ x)
+print(summary(fit))
+```
+
+And for a report we can produce a simple table (including a caption) of output and the regression fit:
+
+```{r fit}
+kable(coefficients(summary(fit)),
+      caption = "Linear regression fit.") %>%
+  kable_material("striped")
+```
+
+And create a plot:
+```{r plotfit}
+plot(x, y)
+abline(fit, col="red")
+```
+
+## Now, go back and change the data
+
+The *big* feature of dynamically generating reports is when you go back and
+change or update the input data. For example, changing the data in the above
+example and then re-running it to redo the report. The best way to demonstrate
+this is for you to do it in the Exercise.
+
+See the main document for what to do with this file for the Exercise.
+
+## Automating text
+
+Once you've done the Exercise, you can even get a bit clever with your writing
+by including an R `ifelse` statement to somewhat automate the text, for example:
+
+So the maximum value of $y$ is `r round(max(y))`, which is
+`r ifelse(max(y)>400, paste("greater than"), paste("less than"))` 400.
+
+But you have to be careful and think about all possibilities -- what if
+$y=399.9$?
