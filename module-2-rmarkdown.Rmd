@@ -1,4 +1,4 @@
-# Introduction to Rmarkdown
+# Introduction to R Markdown
 
 ## Motivation
 
@@ -19,7 +19,7 @@ of re-running all your code and making sure you manually copy the correct new
 figures into your document. Oh, and you need to redo the tables and check all
 the numbers in your text.
 
-The alternative modern approach is to use Rmarkdown. The idea is that you can
+The alternative modern approach is to use R Markdown. The idea is that you can
 generate a 'dynamic report'. You write code that contains a
 mixture of your R code _and_ your write up. You can use this for short analyses,
 scientific manuscripts, or even a complete thesis.
@@ -27,7 +27,7 @@ scientific manuscripts, or even a complete thesis.
 This introduction, aimed at biologists, will get you started with the
 basics. You will then be in a good position to learn more details from the
 [RStudio introduction](https://rmarkdown.rstudio.com/lesson-1.html) and the
-online [Definitive Guide to Rmarkdown](https://bookdown.org/yihui/rmarkdown ).
+online [Definitive Guide to R Markdown](https://bookdown.org/yihui/rmarkdown ).
 
 A key concept is that everything is written as code. You do not have to manually
 point and click anything, or copy and paste figures between directories. So once
@@ -36,7 +36,7 @@ like, you can just copy that code and use it elsewhere.
 
 **Example application**
 
-A recent 328-page document we wrote in Rmarkdown is [A reproducible data synopsis
+A recent 328-page document we wrote in R Markdown is [A reproducible data synopsis
 for over 100 species of British Columbia
 groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html).
 For each of 113 species, we produced two pages of figures:
@@ -46,11 +46,11 @@ For each of 113 species, we produced two pages of figures:
 For each species, the layout of the figures is identical (even to show no data
 when none are available). Producing each figure and manually inserting them into
 a Word document would be extremely tedious. Instead, the production of the
-document is automated using Rmarkdown.
+document is automated using R Markdown.
 
 Furthermore, the work is transparent and traceable. Because the code produces
   the figures (they are not pasted in from somewhere), we can trace back from
-  the Rmarkdown code to see the R code that:
+  the R Markdown code to see the R code that:
 
 * pulled the data from databases
 * fit models
@@ -78,7 +78,7 @@ The "10.1" is hard-wired into your text, and you typed it on from the value
 "10.1" that your R code calculated (in a variable you calculated, let's say you
 called it `avge_height`).
 
-In your Rmarkdown document you have your R code _and_ your text write up. You
+In your R Markdown document you have your R code _and_ your text write up. You
 would equivalently have:
 
 ```{r, eval=FALSE}
@@ -86,7 +86,7 @@ The average tree height was `r avge_height` m
 ```
 
 Instead of "10.1" you refer _directly_ to the variable `avge_height` that you
-have already calculated. When you 'render' your Rmarkdown document (convert it
+have already calculated. When you 'render' your R Markdown document (convert it
 from code into .pdf, .html or other formats), it
 automatically fills in the `avge_height` value as "10.1". The
 ```{r, eval=FALSE}
@@ -213,7 +213,7 @@ this is for you to do it in the following Exercise.
 1. Download [this file](https://raw.githubusercontent.com/quantitative-biology/module-2-rmarkdown/main/rmark-exercise.Rmd)
    onto your computer and put it where you want to work on this exercise.
 
-1. The file is an Rmarkdown (`.Rmd`) file that you can run by either clicking
+1. The file is an R Markdown (`.Rmd`) file that you can run by either clicking
    the `knitr` button in RStudio or doing `rmarkdown::render("rmark-exercise.Rmd")`
    in R.
 
@@ -238,7 +238,7 @@ this is for you to do it in the following Exercise.
    including creating tables and figures. No copy-and-pasteing of tables, or
    manually keeping track of which figure corresponds to which analysis.
 
-That last bit is the crux of `Rmarkdown`. Once you understand that then you
+That last bit is the crux of R Markdown. Once you understand that then you
 should incorporate it into your workflow. You can easily run identical analyses
 on two data sets, or do 10 runs of a model with different parameters, and easily
 compare the output.
@@ -269,20 +269,20 @@ weave together R code for calculations and LaTeX code for writing up results
 into a .pdf file. (It was called Sweave because S was the precursor language to
 R, plus I expect Sweave sounded better than
 Rweave). Sweave motivated knitr (to knit together R code with text write ups)
-by Yihui Xie, which also allows html and other output formats. Rmarkdown was
+by Yihui Xie, which also allows html and other output formats. R Markdown was
 then created to allow simpler use of knitr, without learning lots of LaTeX
 commands.
 
 To create `.pdf` output, and use LaTeX for writing equations and
 customising your output, if you don't have LaTeX installed it then see
-the simple instructions another book by Yhiui Xie et al., the [Rmarkdown
+the simple instructions another book by Yhiui Xie et al., the [R Markdown
 cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
 
 ## Further reading
 
 As we said, the idea of this module was to give you a simple introduction to
-using `Rmarkdown`. The [Definitive Guide to
-Rmarkdown](https://bookdown.org/yihui/rmarkdown) is highly recommended (and
+using R Markdown. The [Definitive Guide to
+R Markdown](https://bookdown.org/yihui/rmarkdown) is highly recommended (and
 often where you end up when Googling for how to do something), but you do not
 need to understand all of it (I know that Pandoc is doing stuff behind the
 scenes, but have managed to not need much more than that). [Chapter

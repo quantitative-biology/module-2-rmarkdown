@@ -1,5 +1,5 @@
 ---
-title: "Rmarkdown exercise"
+title: "R Markdown exercise"
 author: "Andrew Edwards"
 date: "23/07/2021"
 output:
@@ -7,12 +7,12 @@ output:
 fontsize: 12pt
 ---
 
-<!-- rmark-exercise.Rmd - Rmarkdown code for the Rmarkdown exercise. The "<--"
+<!-- rmark-exercise.Rmd - R Markdown code for the R Markdown exercise. The "<--"
      is how you start and end a comment (it is the .html format for comments).
 -->
 
-# Simple Rmarkdown exercise
-<!-- The # here is Rmarkdown for 'Section Heading' -->
+# Simple R Markdown exercise
+<!-- The # here is R Markdown for 'Section Heading' -->
 
 Run this code by clicking the `knitr` button in RStudio or
 `rmarkdown::render("rmark-exercise.Rmd")` in R.
@@ -24,14 +24,14 @@ file. Comments for understanding can be read in the `.Rmd` file.
 <!-- This is how you do a chunk of R code, and call it "setup": -->
 ```{r setup}
 # This option sets the R output in your document to not have ## before it, which
-#  is the default. You can customise pretty much anything (see the Rmarkdown
+#  is the default. You can customise pretty much anything (see the R Markdown
 #  book).
 knitr::opts_chunk$set(comment = "")
 ```
 
 <!-- Note that because the above chunk is R code, the `#` symbol represents a
 comment. Your text editor should hopefully colour code this file so you can
-distinguish Rmarkdown headings and R comments. -->
+distinguish R Markdown headings and R comments. -->
 
 ## Generate data
 
@@ -54,7 +54,7 @@ n
 We can automatically say that the maximum value of the data is `r max(y)`, or round it to a
 whole number: the maximum value of the data is `r round(max(y))`.
 <!-- The ` r` at
-     the start of each of these tells Rmarkdown to evaluate the remaining code in
+     the start of each of these tells R Markdown to evaluate the remaining code in
      R. You use this for short bits of code that you want within sentences, and use
      chunks for larger bits of code.
 -->
@@ -81,7 +81,7 @@ kable(data[1:10,]) %>%
 ```
 
 You can set all sorts of formatting (and do it once at the start for all
-tables) with the `kable` and `kableExtra` packages (see the Rmarkdown book), so
+tables) with the `kable` and `kableExtra` packages (see the R Markdown book), so
 don't worry about formatting for now.
 
 ## Plot then fit a regression data
