@@ -205,7 +205,7 @@ change or update the input data. For example, changing the data in the above
 example and then re-running it to redo the report. The best way to demonstrate
 this is for you to do it in the following Exercise.
 
-### Exercises
+### Exercise
 
 1. In R do `library(rmarkdown)` to make sure you have the `rmarkdown`
    package. If not then install it.
@@ -213,22 +213,37 @@ this is for you to do it in the following Exercise.
 1. Download [this file](https://raw.githubusercontent.com/quantitative-biology/module-2-rmarkdown/main/rmark-exercise.Rmd)
    onto your computer and put it where you want to work on this exercise.
 
-1. The file is an Rmarkdown (`.Rmd`) file that you run by either clicking
+1. The file is an Rmarkdown (`.Rmd`) file that you can run by either clicking
    the `knitr` button in RStudio or doing `rmarkdown::render("rmark-exercise.Rmd")`
-   in R. TODO check these.
+   in R.
 
-1. Check that this has produced an `.html` file document that looks similar to what you
+1. Check that this has produced ('rendered') an `.html` file document that looks
+   similar to what you
    see above (don't worry if the styling is not identical, but the important
-   content should be). Note that the `.Rmd` file is _not_ repeating explanations
-   of how to do certain things TODO reword.
+   content should be). Note that the `.Rmd` file is _not_ repeating all the
+   explanations that we gave above.
 
-1. Copy the `***.html` to `****-orig.html`, change `n` to 30 in `***.Rmd`,
-   and re-run it.
+1. Carefully read through the `.Rmd` file and compare it with what you see in the
+   resulting `.html`. There are some comments in there, denoted by
+   `<!-- comment -->` to help you, but you should be able to get the idea of how
+   commands in the `.Rmd` file translate into output in the `.html` file.
+
+1. Copy the resulting `rmark-exercise.html` to `rmark-exercise-orig.html`, change `n` to 30 in `rmark-exercise.Rmd`,
+   and re-render it.
 
 1. Compare the two `.html` files. You have done the same analyses but on
-   different data.
+   different data. You changed one value, `n`, and consequently all the
+   resulting calculations changed, and these are all updated in your new `.html`
+   document! You have performed exactly the same analysis on your 'new' data,
+   including creating tables and figures. No copy-and-pasteing of tables, or
+   manually keeping track of which figure corresponds to which analysis.
 
-1. You can even get a bit clever with your writing by including an R `ifelse`
+That last bit is the crux of `Rmarkdown`. Once you understand that then you
+should incorporate it into your workflow. You can easily run identical analyses
+on two data sets, or do 10 runs of a model with different parameters, and easily
+compare the output.
+
+You can even get a bit clever with your writing by including an R `ifelse`
 statement to somewhat automate the text. Here is the results of some code (that
 will be included in the file):
 
@@ -260,5 +275,22 @@ commands.
 
 To create `.pdf` output, and use LaTeX for writing equations and
 customising your output, if you don't have LaTeX installed it then see
-the simple instructions by Yhiui Xie et al. in the [Rmarkdown
+the simple instructions another book by Yhiui Xie et al., the [Rmarkdown
 cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+## Further reading
+
+As we said, the idea of this module was to give you a simple introduction to
+using `Rmarkdown`. The [Definitive Guide to
+Rmarkdown](https://bookdown.org/yihui/rmarkdown) is highly recommended (and
+often where you end up when Googling for how to do something), but you do not
+need to understand all of it (I know that Pandoc is doing stuff behind the
+scenes, but have managed to not need much more than that). [Chapter
+2](https://bookdown.org/yihui/rmarkdown/basics.html) goes through the basics,
+including many things that we glossed over above, such as the code between the
+`---` at the top of `rmark-exercise.Rmd`. For me to explain it properly, I would
+have to refer to the guidebook anyway.
+
+In practice, once you have something working in the style you like, you can just
+copy those settings for each new project. It can be handy to keep a readme file
+of containing commands/options/tips that you use a lot.

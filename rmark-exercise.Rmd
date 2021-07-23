@@ -14,14 +14,12 @@ fontsize: 12pt
 # Simple Rmarkdown exercise
 <!-- The # here is Rmarkdown for 'Section Heading' -->
 
-Run this code by clicking the `knitr` button in RStudio (TODO YES???) or
+Run this code by clicking the `knitr` button in RStudio or
 `rmarkdown::render("rmark-exercise.Rmd")` in R.
 
 To understand what is happening you should compare the code in the
 `rmark-exercise.Rmd` file with the resulting output in the `rmark-exercise.html`
-file. Comments for understanding will be done in the `.Rmd` file and should be
-read. We will make the resulting output in the `.html` file focus on the data
-generation and analysis.
+file. Comments for understanding can be read in the `.Rmd` file.
 
 <!-- This is how you do a chunk of R code, and call it "setup": -->
 ```{r setup}
