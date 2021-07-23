@@ -2,6 +2,10 @@
 
 ## Motivation
 
+```{r setup2, echo=FALSE}
+knitr::opts_chunk$set(comment = "")
+```
+
 Say you get some tree data from a colleague, and spend a month writing lots of
 R code to analyse the data. Your code also produces beautiful figures and tables,
 that you then manually copy into a Word document. You have also written lots of
@@ -27,7 +31,7 @@ online [Definitive Guide to Rmarkdown](https://bookdown.org/yihui/rmarkdown ).
 
 **Example application**
 
-A recent document we wrote in Rmarkdown is [A reproducible data synopsis
+A recent 328-page document we wrote in Rmarkdown is [A reproducible data synopsis
 for over 100 species of British Columbia
 groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html).
 For each of 113 species, we produced two pages of figures:
@@ -60,21 +64,25 @@ packages) and work behind it, but the idea is to show you what is possible.
 
 ## Basic idea
 
-In the above tree example you would have a sentence (written in, say, Word) that says
+In the above tree example, if using Word, for example, you would have a sentence
+that says
 
 `The average tree height was 10.1 m`
 
 The "10.1" is hard-wired into your text, and you typed it on from the value
-"10.1" that your R code calculated (in a variable you calculated as `avge_height`).
+"10.1" that your R code calculated (in a variable you calculated, let's say you
+called it `avge_height`).
 
-In your Rmarkdown document, you would equivalently have:
+In your Rmarkdown document you have your R code _and_ your text write up. You
+would equivalently have:
 
 ```{r, eval=FALSE}
 The average tree height was `r avge_height` m
 ```
 
 Instead of "10.1" you refer _directly_ to the variable `avge_height` that you
-have already calculated. When you 'render' your Rmarkdown document, it
+have already calculated. When you 'render' your Rmarkdown document (convert it
+from code into .pdf, .html or other formats), it
 automatically fills in the `avge_height` value as "10.1". The
 ```{r, eval=FALSE}
 `r
@@ -96,7 +104,7 @@ you will download and run the code in the exercise.
 **Generate data**
 
 First we'll need some libraries:
-```{r rmarklibs, results='hide'}
+```{r rmarklibs, message=FALSE, warning=FALSE}
 library(kableExtra)
 library(dplyr)
 library(xtable)
@@ -116,7 +124,7 @@ So we are showing our R code here (we can choose to
 hide it if we like), and it has been executed, yielding the printed output of
 the value of `n` (because of the final line of the code).
 
-We can also embed results from R within sentences:
+We can also embed results from R within sentences, for example:
 
 We have a sample size of `r n`.
 
@@ -125,7 +133,7 @@ This is done (as mentioned above) by the code:
 We have a sample size of `r n`
 ```
 
-We can also say that the maximum value of the data is `r max(y)`, or round it to a
+We can also automatically say that the maximum value of the data is `r max(y)`, or round it to a
 whole number: the maximum value of the data is `r round(max(y))`. These were done by:
 ```{r eval=FALSE}
 the maximum value of the data is `r max(y)`
@@ -183,21 +191,6 @@ plot(x, y)
 abline(fit, col="red")
 ```
 
-<!-- could remove this bit? -->
-
-You can even get a bit clever with your writing by including an R `ifelse`
-statement to somewhat automate.
-
-So the maximum value of $y$ is `r round(max(y))`, which is
-`r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
-the special value of 400. The "greater than" or "less than" part is given by
-```{r swanky, eval=FALSE}
-`r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
-```
-
-But be careful and think about
-other possibilities -- what if $y=399.9$ in the above example?.
-
 **Now, let's go back and change the data**
 
 The *big* feature of dynamically generating reports is when you go back and
@@ -225,13 +218,24 @@ this is for you to do it in the following Exercise.
 1. Compare the two `.pdf` files. You have done the same analyses but on
    different data.
 
+1. You can even get a bit clever with your writing by including an R `ifelse`
+statement to somewhat automate the text. Here is the results of some code (that
+will be included in the file):
 
+So the maximum value of $y$ is `r round(max(y))`, which is
+`r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
+the special value of 400. The "greater than" or "less than" part is given by
+```{r swanky, eval=FALSE}
+`r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
+```
 
-3. Hide the output in the first chunk of the 'Now to fit a linear regression'
-section. (In a report you wouldn't show such results, though it's very useful
-when exploring data -- I show the output all the time when looking at large data
-frames).
+But you have to be careful and think about all possibilities -- what if
+$y=399.9$?
 
+1. In exploratory analyses it is helpful to include your R code so you can see
+what you have done. But for a manuscript you just want the results. The
+big individual chunks of R code are called 'chunks'. TODO: to just show the
+results and not the R code, change TODO
 
 **Explain cache**
 
