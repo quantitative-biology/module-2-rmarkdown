@@ -27,9 +27,8 @@ generation and analysis.
 ```{r setup}
 # This option sets the R output in your document to not have ## before it, which
 #  is the default. You can customise pretty much anything (see the Rmarkdown
-#  book). It also caches the output -- more about that later.
-knitr::opts_chunk$set(comment = "",
-                      cache = TRUE)
+#  book).
+knitr::opts_chunk$set(comment = "")
 ```
 
 <!-- Note that because the above chunk is R code, the `#` symbol represents a

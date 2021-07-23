@@ -259,21 +259,31 @@ then created to allow simpler use of knitr, without learning lots of LaTeX
 commands.
 
 To create `.pdf` output, and use LaTeX for writing equations and
-customising your output, you need LaTeX installed. If you don't have it then see
+customising your output, if you don't have LaTeX installed it then see
 the simple instructions by Yhiui Xie et al. in the [Rmarkdown
 cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
 
-
 ## Cache
 
+At the start of `rmark-exercise.Rmd` we set the `knitr` option `cache = TRUE`.
 
-TODO - check if it's like this or not (it won't be, depends on settings I do):
+What this does, is it caches the results of each code chunk in a file. After
+running the code you should have a folder `rmark-exercise_cache\html\`. In there
+you will see three files corresponding to each chunk of code (with the chunk
+name at the start of each filename).
 
-1. Look at `knitr-cache-tex/` folder, order files by 'Date modified'.
+Check the date that each file was created -- (in Windows Explorer it's
+View--Details). The files should all have been created at (about) the same time,
+since this code is short and did not take long to run.
 
-2. Re-run this file. Look at the times of those files.
+Now 'render' the file again, as you did before. Check the dates. These should
+not have changed. But check the date of the resulting `rmark-exercise.html`
+file -- this should be more recent, as that file just got rebuilt.
 
-3. Change $n$ back to 50.
+In your `rmark-exercise.Rmd` go and set `n <- 100`, and render the file again.
+
+The `rmark-exercise.html` will be updated, but now check the dates of the files
+in `rmark-exercise_cache\html\`.
 
 4. Re-run this file. Again look at the times of the files in `knitr-cache-tex/`.
 
