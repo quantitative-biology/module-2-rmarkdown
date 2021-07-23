@@ -18,3 +18,8 @@ knitr-cache
 .DS_Store
 
 *.html
+
+knitr-example.Rmd
+knitr-talk.Rnw
+rmark-exercise_cache/
+rmark-exercise_files/
