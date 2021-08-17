@@ -41,7 +41,10 @@ for over 100 species of British Columbia
 groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html).
 For each of 113 species, we produced two pages of figures:
 
-![](../module-2-rmarkdown/images/silvergray.jpg){width=120%}
+```{r, echo = FALSE, fig.alt = "", width="100%"}
+knitr::include_graphics("./images/silvergray.jpg",error = FALSE)
+```
+
 
 For each species, the layout of the figures is identical (even to show no data
 when none are available). Producing each figure and manually inserting them into
