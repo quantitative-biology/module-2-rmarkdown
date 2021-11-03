@@ -42,7 +42,7 @@ groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/201
 For each of 113 species, we produced two pages of figures:
 
 ```{r, echo = FALSE, fig.alt = "Two example pages showing multiple figures of data.", width="100%"}
-knitr::include_graphics("../module-2-rmarkdown/images/silvergray.jpg",error = FALSE)
+knitr::include_graphics("silvergray.jpg")
 ```
 
 
