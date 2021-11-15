@@ -297,3 +297,6 @@ have to refer to the guidebook anyway.
 In practice, once you have something working in the style you like, you can just
 copy those settings for each new project. It can be handy to keep a readme file
 of containing commands/options/tips that you use a lot.
+
+### Feedback
+We value your input! Please take the time to let us know how we might improve these materials. [Survey](https://forms.gle/vLkcZq7NxPb2ajTQ6)
