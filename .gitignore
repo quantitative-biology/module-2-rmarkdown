@@ -16,6 +16,7 @@ knitr-cache
 .RData
 .RHistory
 .DS_Store
+*.docx
 
 *.html
 

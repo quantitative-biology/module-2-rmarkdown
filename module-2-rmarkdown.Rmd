@@ -221,7 +221,8 @@ this is for you to do it in the following Exercise.
    package. If not then install it.
 
 1. Download [this file](https://raw.githubusercontent.com/quantitative-biology/module-2-rmarkdown/main/rmark-exercise.Rmd)
-   onto your computer and put it where you want to work on this exercise.
+   onto your computer and put it where you want to work on this exercise. Make
+   sure it is saved as `rmark-exercise.Rmd` and not `rmark-exercise.txt`.
 
 1. The file is an R Markdown (`.Rmd`) file that you can run by either clicking
    the `knitr` button in RStudio or doing `rmarkdown::render("rmark-exercise.Rmd")`
