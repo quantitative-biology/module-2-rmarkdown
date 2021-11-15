@@ -68,7 +68,8 @@ and has consequently increased data transparency between Fisheries and Oceans Ca
 fishing industry, non-governmental organizations, and the public.
 
 This is admittedly a _very_ advanced example with a ton of code (several new R
-packages) and work behind it, but the idea is to show you what is possible.
+packages) and work behind it, but the idea is to show you what is possible and
+what you can work towards.
 
 ## Basic idea
 
@@ -224,7 +225,8 @@ this is for you to do it in the following Exercise.
    similar to what you
    see above (don't worry if the styling is not identical, but the important
    content should be). Note that the `.Rmd` file is _not_ repeating all the
-   explanations that we gave above.
+   explanations that we gave above, but is a simplified version containing
+   the commands, which is why the output won't be identical.
 
 1. Carefully read through the `.Rmd` file and compare it with what you see in the
    resulting `.html`. There are some comments in there, denoted by
