@@ -41,14 +41,20 @@ for over 100 species of British Columbia
 groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html).
 For each of 113 species, we produced two pages of figures:
 
-```{r, echo = FALSE, fig.alt = "Two example pages showing multiple figures of data.", width="100%"}
-knitr::include_graphics("silvergray.jpg")
+```{r, echo = FALSE, fig.alt = "First example page showing multiple figures of data.", width="100%"}
+knitr::include_graphics("silvergray-rockfish-1.png")
 ```
 
+and
 
-For each species, the layout of the figures is identical (even to show no data
+```{r, echo = FALSE, fig.alt = "Second example page showing multiple figures of data.", width="100%"}
+knitr::include_graphics("silvergray-rockfish-2.png")
+```
+
+Do not worry about the details -- the point here is that for each species the
+layout of the figures is identical (even to show no data
 when none are available). Producing each figure and manually inserting them into
-a Word document would be extremely tedious. Instead, the production of the
+a Word document would be extremely tedious and time-consuming. Instead, the production of the
 document is automated using R Markdown.
 
 Furthermore, the work is transparent and traceable. Because the code produces
