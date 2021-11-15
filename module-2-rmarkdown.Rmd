@@ -226,7 +226,10 @@ this is for you to do it in the following Exercise.
    see above (don't worry if the styling is not identical, but the important
    content should be). Note that the `.Rmd` file is _not_ repeating all the
    explanations that we gave above, but is a simplified version containing
-   the commands, which is why the output won't be identical.
+   the commands, which is why the output won't be identical. (The exact R Markdown
+   file, `module-2-rmarkdown.Rmd`, used to create what you are reading is available on the [GitHub
+   repository for this
+   module](https://github.com/quantitative-biology/module-2-rmarkdown)).
 
 1. Carefully read through the `.Rmd` file and compare it with what you see in the
    resulting `.html`. There are some comments in there, denoted by
