@@ -177,7 +177,7 @@ because of settings we have, but pretty much everything is tweakable with the
 
 Now to plot the data:
 
-```{r plot}
+```{r plot, fig.alt = "Simple plot of the 50 simulated data points."}
 plot(x, y)
 ```
 
@@ -196,7 +196,7 @@ kable(coefficients(summary(fit)),
 ```
 
 And create a plot:
-```{r plotfit}
+```{r plotfit, fig.alt = "Simple plot of the 50 simulated data points with the fitted regression added in red."}
 plot(x, y)
 abline(fit, col="red")
 ```
@@ -299,4 +299,5 @@ copy those settings for each new project. It can be handy to keep a readme file
 of containing commands/options/tips that you use a lot.
 
 ### Feedback
-We value your input! Please take the time to let us know how we might improve these materials. [Survey](https://forms.gle/vLkcZq7NxPb2ajTQ6)
+We value your input! Please take the time to let us know how we might improve
+these materials in [this survey](https://forms.gle/vLkcZq7NxPb2ajTQ6).
