@@ -1,0 +1,233 @@
+---
+title: "Simple knitr Rmarkdown example -- automatic write-up of simulated data"
+author: "Author name goes here"
+output:
+  pdf_document:
+    includes:
+      in_header: preamble.tex
+fontsize: 12pt
+date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
+---
+
+<!-- This is a comment. The above packages are things that we have found useful,
+     in particular mathptmx gives a bolder font than the Latex default.
+
+	 To render this document, in R run
+	   rmarkdown::render("rmark-example-pdf.Rmd")
+	 or click the knit button in RStudio. It is helpful for colleagues (and your
+	   future self) to include such a command in a document, especially if you
+	   start using packages like bookdown to produce more complex documents,
+	   requiring a different R command.
+-->
+
+<!-- In the next chunk we set knitr options for the output for all future
+    chunks. These options are adapted from those used in our groundfish report
+    mentioned earlier in the module, at:
+    https://github.com/pbs-assess/gfsynopsis/blob/master/report/report-rmd/00-load.Rmd
+    Some options are commented out but might be useful for you.
+	We will explain the options - for more explanation and further options see
+    https://yihui.org/knitr/options/  . The chunk also loads the necessary
+    libraries, which we assume you have installed from doing rmark-exercise.Rmd -->
+
+```{r setup, echo=FALSE, cache=FALSE, message=FALSE, results='hide', warning=FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(collapse = TRUE,
+                      fig.path = "knitr-figs/",
+                      cache.path = "knitr-cache/",
+                      fig.asp = 0.618,
+                      fig.width = 9,
+                      out.width = "6in",
+                      echo = FALSE,
+                      autodep = TRUE,
+                      cache = TRUE,
+                      fig.align = "center",
+                      fig.pos = "tbp"
+                      #   dpi = 200,
+                      # warning = FALSE,
+                      # message = FALSE,
+                      )
+library(kableExtra)
+library(dplyr)
+library(xtable)
+```
+
+<!-- So those commands do not show up in the rendered .pdf because of the
+     echo=FALSE option in the first line. For future chunks, the R code and
+     results again do not show up, because echo = FALSE is set for all chunks in
+     the knitr::opts_chunk$set call above. -->
+
+# Introduction
+
+The document produces output based on calculations similar to those
+done in `rmark-exercise.Rmd`, but more in the style of a report, or a manuscript to be
+submitted to a journal. As such, the output is .pdf and the options are set so
+as to hide the underlying code.
+
+Again, read through the .Rmd carefully to
+see any comments as well as to understand how the output is being produced. Here
+we are
+producing a more polished document than in `rmark-exercise.Rmd`. The rendered .pdf
+will not show the code, yet the code is still explicitly given
+in the .Rmd file. So the R code can easily be changed to re-run the analyses and
+update the document automatically, and all calculations, figures, and tables are
+traceable back to the code.
+
+# Generate data
+
+<!-- So all chunks, such as this next one, get evaluated but the output is not
+     printed in the .pdf -->
+
+```{r generate}
+set.seed(42)
+n = 50                      # sample size
+x = 1:n
+y = 10*x + rnorm(n, 0, 10)
+```
+
+We have generated an example data set with a sample size of $n=$ `r n`, with values
+$x_i = 1, 2, 3, ..., n$ and corresponding $y_i$ values given by
+\begin{equation}
+y_i = 10 x_i + \epsilon,
+\end{equation}
+where
+\eb
+\epsilon_i \sim \mbox{Normal}(0, 10).
+\ee
+
+The maximum value of $y$ is `r max(y)`, or rounded to two decimal places is
+`r round(max(y),2)`.
+
+
+
+
+## Show some data
+
+Show some values:
+
+```{r showdata}
+data = tbl_df(cbind(x, y))
+data
+```
+
+(only the first 10 rows get printed here thanks to dplyr).
+
+To have a proper table:
+```{r kable}
+kable(data[1:10,],
+      caption = "The first rows of my data.") %>%
+    kable_styling(latex_options = "h")
+```
+<!-- The option "h" above is just to force the table to appear 'here' in the
+output, over-riding the default to put it somewhere more sensible (top, or next
+page).
+-->
+
+\clearpage <!-- This starts a new page in Latex, I don't know the Rmd command -->
+
+The default is a little ugly, but we can tweak some settings:
+```{r tweak}
+kable(data[1:10,],
+      caption = "The first rows of my data, with better formatting.",
+      booktabs = TRUE) %>%
+    kable_styling(latex_options = c("striped", "h"))
+```
+
+But we won't get into that now (just so you know that pretty much everything is
+tweakable).
+
+\clearpage
+
+## Plot the data
+
+Now we want to plot the data:
+
+```{r plot}
+plot(x, y)
+```
+
+\clearpage
+
+## Now to fit a linear regression
+
+Can fit and then print the summary regression output from R:
+
+```{r regression}
+fit = lm(y~x)
+print(summary(fit))
+```
+
+Can produce a simple table of output and the regression fit:
+
+```{r fit}
+kable(coefficients(summary(fit)),
+      caption = "Linear regression fit.",
+      booktabs = TRUE) %>%
+    kable_styling(latex_options = "h")
+```
+
+And create a plot:
+```{r plotfit}
+plot(x, y)
+abline(fit, col="red")
+```
+
+## Summarise the results
+
+So the maximum value of $y$ is `r round(max(y),0)`, which is
+`r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
+the special value of 400.
+
+So you can actually somewhat automate the text (just be careful and think about
+other possibilities -- what if $y=399.9$ in the above example?).
+
+So you can automate a sentence such as "the stock is in the healthy zone".
+
+## Now, let's go back and change the data
+
+The *big* feature of dynamically generating reports is when you go back and
+change or update the input data.
+
+Let's go back and change replace the definition of $y$ with
+```{r changey, eval=FALSE}
+y = 10*x^1.5 + rnorm(n, 0, 10)
+```
+
+[I'll do this manually].
+
+Look at the `.Rmd` code here and note the ues of `eval=FALSE`.
+
+# Exercises:
+
+1. Get the code running.
+
+2. Change `n` to 30, and re-run.
+
+3. Hide the output in the first chunk of the 'Now to fit a linear regression'
+section. (In a report you wouldn't show such results, though it's very useful
+when exploring data -- I show the output all the time when looking at large data
+frames).
+
+\clearpage
+
+## Explain cache
+
+1. Look at `knitr-cache-tex/` folder, order files by 'Date modified'.
+
+2. Re-run this file. Look at the times of those files.
+
+3. Change $n$ back to 50.
+
+4. Re-run this file. Again look at the times of the files in `knitr-cache-tex/`.
+
+So `knitr` caches results of each chunk, but then re-runs those that have
+changed (or those that depend on something that has change).
+
+Very efficient -- if you just update some text you don't need all the
+calculations redone.
+
+Beware - if you read in, say, a `.csv` file and the contents of the file change,
+`knitr` will still use the cached read-in of that file, because it won't know
+that the file has changed.
+
+If you're not sure then it's safest to delete the `knitr-cache-tex/` directory
+to re-run all calculations (including loading in of data).
