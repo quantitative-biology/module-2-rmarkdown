@@ -6,15 +6,17 @@
 knitr::opts_chunk$set(comment = "")
 ```
 
-Say you get some tree data from a colleague, and spend a month writing lots of
+Say you were sent some tree data from a colleague, consisting of lengths and diameters
+of some trees repeatedly measured over 30 years. You then spent a month writing lots of
 R code to analyse the data. Your code also produces beautiful figures and tables,
-that you then manually copy into a Word document. You have also written lots of
-text, and include specific calculated numbers in the text, such as the simple
+that you then manually copied into a Word document. You also had to write lots of
+text, including calculations such as the simple
 
 `The average tree height was 10.1 m.`
 
-Then your colleague sheepishly tells you that someone found an error in some of
-the data, and so you need to redo everything. Your heart sinks with the prospect
+Then your colleague sheepishly tells you that someone introduced an error when
+extracing the data from their tree-size database, and so
+you need to redo everything. Your heart sinks with the prospect
 of re-running all your code and making sure you manually copy the correct new
 figures into your document. Oh, and you need to redo the tables and check all
 the numbers in your text.
@@ -24,10 +26,12 @@ generate a 'dynamic report'. You write code that contains a
 mixture of your R code _and_ your write up. You can use this for short analyses,
 scientific manuscripts, or even a complete thesis.
 
-This introduction, aimed at biologists, will get you started with the
-basics. You will then be in a good position to learn more details from the
-[RStudio introduction](https://rmarkdown.rstudio.com/lesson-1.html) and the
-online [Definitive Guide to R Markdown](https://bookdown.org/yihui/rmarkdown ).
+This module is aimed to get biologists started with the
+basics without too much extraneous information. Having gone through this module
+you will then be in a good position to learn more details from the
+online [Definitive Guide to R Markdown](https://bookdown.org/yihui/rmarkdown)
+and the [RStudio introduction](https://rmarkdown.rstudio.com/lesson-1.html),
+which are aimed at a general statistical audience (rather than specifically biologists).
 
 A key concept is that everything is written as code. You do not have to manually
 point and click anything, or copy and paste figures between directories. So once
