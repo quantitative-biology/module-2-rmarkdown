@@ -93,20 +93,16 @@ $x_i = 1, 2, 3, ..., n$ and corresponding $y_i$ values given by
 y_i = 10 x_i + \epsilon_i,
 \end{equation}
 where
-\eb
+\begin{equation}
 \epsilon_i \sim \mbox{Normal}(0, `r sigma`).
-\label{epsilon}
-\ee
+\end{equation}
+
 
 <!-- In the first sentence we used $..$ to have the variables as mathematical
      symbols (x_i is latex for 'x with a subscript i') -- see the .pdf.
      Then for the first equation we used \begin{equation} and \end{equation} to
      display it 'display style', which just means not within a sentence and with
-     an automatic equation number.
-     Since \begin{equation} and \end{equation} are a bit long to frequently
-     type, in the second equation we use the simpler \eb and \ee. These are just
-     new commands that I created in the file preamble.tex - take a quick look at
-     that file to see. -->
+     an automatic equation number. -->
 
 <!-- Also note that the R code and the equations are not 100% in sync. If you change
      the 10 in rnorm(0, 10) to 5, you would have to change both the R code to
