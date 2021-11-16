@@ -19,9 +19,10 @@ Run this code by clicking the `knitr` button in RStudio or
 
 To understand what is happening you should compare the code in the
 `rmark-exercise.Rmd` file with the resulting output in the `rmark-exercise.html`
-file. Comments for understanding can be read in the `.Rmd` file.
+file. Extra comments to help your understanding appear in the `.Rmd` file but do
+not show up in the resulting `.html` file, so do make sure to look at both.
 
-<!-- This is how you do a chunk of R code, and call it "setup": -->
+<!-- This is how you do a "chunk" of R code, and call it "setup": -->
 ```{r setup}
 # This option sets the R output in your document to not have ## before it, which
 #  is the default. You can customise pretty much anything (see the R Markdown
@@ -29,18 +30,27 @@ file. Comments for understanding can be read in the `.Rmd` file.
 knitr::opts_chunk$set(comment = "")
 ```
 
-<!-- Note that because the above chunk is R code, the `#` symbol represents a
-comment. Your text editor should hopefully colour code this file so you can
-distinguish R Markdown headings and R comments. -->
+<!-- Note that because the above chunk is R code, the `# This option...` represents a
+comment because of the `#`. Your text editor should hopefully colour code this file so you can
+distinguish R Markdown headings and R comments.
+
+And, yes, "chunk" is the technical name for these chunks of code.
+-->
 
 ## Generate data
 
 First we'll need some libraries:
-```{r rmarklibs, message=FALSE, warning=FALSE}
+```{r rmarklibs}
 library(kableExtra)
 library(dplyr)
 library(xtable)
 ```
+
+If you do not have any of them then install them by typing, for example,
+```{r packages, eval=FALSE}
+install.packages(kableExtra)
+```
+in your R console (or install using RStudio if you use that).
 
 Now generate some data:
 ```{r generate}
@@ -57,6 +67,9 @@ whole number: the maximum value of the data is `r round(max(y))`.
      the start of each of these tells R Markdown to evaluate the remaining code in
      R. You use this for short bits of code that you want within sentences, and use
      chunks for larger bits of code.
+	 The earlier chunk containing ` install.packages(kableExtra)` is not
+     automatically run because of the `eval=FALSE` option at the start of the
+     chunk - scroll up to take a look.
 -->
 
 ## Show some of the data
