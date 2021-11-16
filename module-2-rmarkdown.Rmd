@@ -23,8 +23,11 @@ the numbers in your text.
 
 The alternative modern approach is to use R Markdown. The idea is that you can
 generate a 'dynamic report'. You write code that contains a
-mixture of your R code _and_ your write up. You can use this for short analyses,
-scientific manuscripts, or even a complete thesis.
+mixture of your R code _and_ your write up all in one place. You can use this for
+short analyses, scientific manuscripts, or even a complete thesis. For shorter
+documents you will have a single R Markdown file, and for more complex documents
+it's better to break your work up into individual files that are linked
+together, such as chapters for a thesis.
 
 This module is aimed to get biologists started with the
 basics without too much extraneous information. Having gone through this module
@@ -73,7 +76,7 @@ In particular, we intend to periodically update the document as new data become
 available. While still a lot of work, it is less daunting knowing that the
 code is already available.
 
-On a practical level, the report has allowed anyone to see the data available,
+On a practical level, the report has allowed anyone to see the data that are available,
 and has consequently increased data transparency between Fisheries and Oceans Canada, the
 fishing industry, non-governmental organizations, and the public.
 
