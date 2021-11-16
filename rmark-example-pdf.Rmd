@@ -9,8 +9,10 @@ fontsize: 12pt
 date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-<!-- This is a comment. The above packages are things that we have found useful,
-     in particular mathptmx gives a bolder font than the Latex default.
+<!-- This is a comment. The above is the YAML. It includes reference to the file
+     preamble.tex that you need to have in the same folder as
+     rmark-example-pdf.Rmd. Take a quick look at it - in contains some latex
+     packages to include that we have found useful, plus some user-defined commands.
 
 	 To render this document, in R run
 	   rmarkdown::render("rmark-example-pdf.Rmd")
@@ -81,20 +83,38 @@ traceable back to the code.
 set.seed(42)
 n = 50                      # sample size
 x = 1:n
-y = 10*x + rnorm(n, 0, 10)
+sigma = 10
+y = 10*x + rnorm(n, 0, sigma)
 ```
 
 We have generated an example data set with a sample size of $n=$ `r n`, with values
 $x_i = 1, 2, 3, ..., n$ and corresponding $y_i$ values given by
 \begin{equation}
-y_i = 10 x_i + \epsilon,
+y_i = 10 x_i + \epsilon_i,
 \end{equation}
 where
 \eb
-\epsilon_i \sim \mbox{Normal}(0, 10).
+\epsilon_i \sim \mbox{Normal}(0, `r sigma`).
+\label{epsilon}
 \ee
 
-The maximum value of $y$ is `r max(y)`, or rounded to two decimal places is
+<!-- In the first sentence we used $..$ to have the variables as mathematical
+     symbols (x_i is latex for 'x with a subscript i') -- see the .pdf.
+     Then for the first equation we used \begin{equation} and \end{equation} to
+     display it 'display style', which just means not within a sentence and with
+     an automatic equation number.
+     Since \begin{equation} and \end{equation} are a bit long to frequently
+     type, in the second equation we use the simpler \eb and \ee. These are just
+     new commands that I created in the file preamble.tex - take a quick look at
+     that file to see. -->
+
+<!-- Also note that the R code and the equations are not 100% in sync. If you change
+     the 10 in rnorm(0, 10) to 5, you would have to change both the R code to
+     rnorm(0, 5) and the equation write-up to \mbox{Normal}(0, 5). To avoid
+     errors, you could automate this as follows: -->
+
+
+The maximum value of $y_i$ is `r max(y)`, or rounded to two decimal places it is
 `r round(max(y),2)`.
 
 
