@@ -3,9 +3,16 @@ title: "Simple knitr Rmarkdown example -- automatic write-up of simulated data"
 author: "Author name goes here"
 output:
   pdf_document:
-    includes:
-      in_header:
-        preamble.tex
+    extra_dependencies:
+      mathptmx: null
+      xcolor: ["table=TRUE"]
+      booktabs: null
+      wrapfig: null
+      float: null
+      colortbl: null
+      pdflscape: null
+      tabu: null
+      makecell: null
 fontsize: 12pt
 date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
 ---
