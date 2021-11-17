@@ -4,7 +4,8 @@ author: "Author name goes here"
 output:
   pdf_document:
     includes:
-      in_header: preamble.tex
+      in_header:
+        preamble.tex
 fontsize: 12pt
 date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
 ---
