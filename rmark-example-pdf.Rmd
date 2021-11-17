@@ -103,6 +103,7 @@ y_i = 10 x_i + \epsilon_i,
 where
 \begin{equation}
 \epsilon_i \sim \mbox{Normal}(0, `r sigma`).
+\label{epsilon}
 \end{equation}
 
 
@@ -110,90 +111,98 @@ where
      symbols (x_i is latex for 'x with a subscript i') -- see the .pdf.
      Then for the first equation we used \begin{equation} and \end{equation} to
      display it 'display style', which just means not within a sentence and with
-     an automatic equation number. -->
+     an automatic equation number. The 'label{epsilon}' gives the equation the
+     label 'epsilon', such that we can refer to it in the text. -->
 
 <!-- Also note that the R code and the equations are not 100% in sync. If you change
      the 10 in rnorm(0, 10) to 5, you would have to change both the R code to
      rnorm(0, 5) and the equation write-up to \mbox{Normal}(0, 5). To avoid
      errors, you could automate this as follows: -->
 
-
 The maximum value of $y_i$ is `r max(y)`, or rounded to two decimal places it is
-`r round(max(y),2)`.
-
-
-
+`r round(max(y),2)`. The equation for $\epsilon$ is shown in (\ref{epsilon}).
+<!-- That last sentence has an example of referencing an equation number. The
+     numbers are automated - if a new equation was added earier then this would
+     be updated to (3) in the .pdf. -->
 
 ## Show some data
 
-Show some values:
 
 ```{r showdata}
 data = tbl_df(cbind(x, y))
-data
 ```
 
-(only the first 10 rows get printed here thanks to dplyr).
-
-To have a proper table:
-```{r kable}
-kable(data[1:10,],
-      caption = "The first rows of my data.") %>%
-    kable_styling(latex_options = "h")
-```
-<!-- The option "h" above is just to force the table to appear 'here' in the
-output, over-riding the default to put it somewhere more sensible (top, or next
-page).
--->
-
-\clearpage <!-- This starts a new page in Latex, I don't know the Rmd command -->
-
-The default is a little ugly, but we can tweak some settings:
 ```{r tweak}
 kable(data[1:10,],
       caption = "The first rows of my data, with better formatting.",
-      booktabs = TRUE) %>%
-    kable_styling(latex_options = c("striped", "h"))
+      booktabs = TRUE,
+      label = "thedata") %>%
+    kable_styling(latex_options = c("striped"))
 ```
-
-But we won't get into that now (just so you know that pretty much everything is
-tweakable).
-
-\clearpage
+The first 10 rows of data are shown in Table \ref{tab:thedata}. This was done
+using the `kable()` function, which is part of the knitr package.
+This basic example shows how to easily add a label (that is then
+referred to in the first sentence here), and add a bit of formatting (the
+`booktabs` option makes the table look nicer, and the `striped` option is adding
+the light-grey shading for readability). See `?knitr::kable()`
+for details. For more advanced options, the `kableExtra` package is
+recommended. If you have a specific request you can usually find helpful
+examples from an internet search.
 
 ## Plot the data
 
-Now we want to plot the data:
-
-```{r plot}
+```{r plotthedata, fig.cap="A plot of the generated data."}
 plot(x, y)
 ```
 
-\clearpage
+It's always good to plot our data, which we do in Figure\ \ref{fig:plotthedata}.
+<!-- We use `Figure\` there because that makes the space a non-breaking space,
+     which will force `Figure` and the resulting 1 to not split over a
+     line. Which is good practice. So you will not get: "which we do in Figure
+	 1. Rather this will always force the 1 to be on the same line. Remember
+     Latex is a typesetting language designed to make output look
+     professional. -->
+Note that the figure does not appear exactly where it
+does in the .Rmd file -- knitr (via Latex) is automatically choosing the best
+place, based on the `fig.pos = "tbp"` option that is set in
+`knitr::opts_chunk$set` at the start of the .Rmd file. The "tbp" means first try
+and place the figure at the top of the current page, else then try the bottom of
+the current page, else then put it on the next page. So your document will look
+more professional than having a figure breaking up the text -- this is standard
+publishing practice (look at a textbook or journal article), and saves you
+having to worry about formatting. However, if necessary you can override this
+automation by setting `fig.pos="h"`, for example, in the header of the chunk,
+where "h" means to put the figure here, where the code appears. If that doesn't
+work (because there isn't really space for it), you can set `fig.pos="H"`, where
+the capital "H" forces the position. If you try it here (add `, fig.pos="H"`
+after the `fig.cap="...."` in the chunk above) you will see that forcing the
+figure onto a new page leaves a lot of ugly white space. The point of this is
+that you don't need to worry about the formatting -- knitr and Latex do it for
+you (but you can usually always override everything).
 
 ## Now to fit a linear regression
 
-Can fit and then print the summary regression output from R:
-
+Figure\ \ref{fig:plotthedata} suggest we could fit a simple linear regression to
+the data.
 ```{r regression}
 fit = lm(y~x)
-print(summary(fit))
+```
+We do this in Figure\ \ref{fig:plotfit}, which shows a decent fit (as expected,
+since we simulated the data from a linear relationship with a small amount of noise).
+```{r plotfit, fig.cap="Linear regression (red line) fit to the data."}
+plot(x, y)
+abline(fit, col="red")
 ```
 
-Can produce a simple table of output and the regression fit:
+And in Table\ \ref{tab:fit} we show the results of the regression fit.
 
 ```{r fit}
 kable(coefficients(summary(fit)),
       caption = "Linear regression fit.",
-      booktabs = TRUE) %>%
-    kable_styling(latex_options = "h")
+      booktabs = TRUE,
+      label = "fit")
 ```
 
-And create a plot:
-```{r plotfit}
-plot(x, y)
-abline(fit, col="red")
-```
 
 ## Summarise the results
 
