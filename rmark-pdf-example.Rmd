@@ -248,26 +248,3 @@ y = 10*x^1.5 + rnorm(n, 0, 10)
 <!-- Note the use of eval=FALSE and echo=TRUE here, we do not want to run this
      chunk of code, but want to show it in the .pdf -->
 And then re-run this document. It should build but with your newly generated data.
-
-## Explain cache
-
-1. Look at `knitr-cache-tex/` folder, order files by 'Date modified'.
-
-2. Re-run this file. Look at the times of those files.
-
-3. Change $n$ back to 50.
-
-4. Re-run this file. Again look at the times of the files in `knitr-cache-tex/`.
-
-So `knitr` caches results of each chunk, but then re-runs those that have
-changed (or those that depend on something that has change).
-
-Very efficient -- if you just update some text you don't need all the
-calculations redone.
-
-Beware - if you read in, say, a `.csv` file and the contents of the file change,
-`knitr` will still use the cached read-in of that file, because it won't know
-that the file has changed.
-
-If you're not sure then it's safest to delete the `knitr-cache-tex/` directory
-to re-run all calculations (including loading in of data).
