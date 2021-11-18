@@ -42,7 +42,7 @@ And, yes, "chunk" is the technical name for these chunks of code.
 First we'll need some libraries:
 ```{r rmarklibs}
 library(kableExtra)
-library(dplyr)
+library(tibble)
 library(xtable)
 ```
 
@@ -77,10 +77,10 @@ whole number: the maximum value of the data is `r round(max(y))`.
 Let's combine the data in a tibble (think of it as a data frame if you don't
 know what that is):
 ```{r showdata}
-data <- tibble(x, y)
+data <- tibble::tibble(x, y)
 data
 ```
-(only the first 10 rows get printed here thanks to dplyr).
+(only the first 10 rows get printed here thanks to it being a tibble).
 
 To have a basic table, we can do
 ```{r kable}

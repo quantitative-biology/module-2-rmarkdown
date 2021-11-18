@@ -36,7 +36,7 @@ date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
      add them in).
 
 	 To render this document, in R run
-	   rmarkdown::render("rmark-example-pdf.Rmd")
+	   rmarkdown::render("rmark-pdf-example.Rmd")
 	 or click the knit button in RStudio. It is helpful for colleagues (and your
 	   future self) to include such a command in a document, especially if you
 	   start using packages like bookdown to produce more complex documents,
@@ -70,9 +70,10 @@ knitr::opts_chunk$set(collapse = TRUE,
 knitr::knit_hooks$set(document = function(x) {
                                    sub('\\usepackage[]{color}',
                                        '\\usepackage{xcolor}', x, fixed = TRUE)
-})
+})  # Last command from
+    # https://tex.stackexchange.com/questions/148188/knitr-xcolor-incompatible-color-definition
 library(kableExtra)
-library(dplyr)
+library(tibble)
 library(xtable)
 ```
 
@@ -144,7 +145,7 @@ The maximum value of $y_i$ is `r max(y)`, or rounded to two decimal places it is
 
 
 ```{r showdata}
-data = tbl_df(cbind(x, y))
+data = tibble::as_tibble(cbind(x, y))
 ```
 
 ```{r tweak}
