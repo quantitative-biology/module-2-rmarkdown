@@ -224,6 +224,7 @@ kable(coefficients(summary(fit)),
       caption = "Linear regression fit.",
       booktabs = TRUE,
       label = "fit",
+      digits = 2,
       position = "b")  # This position argument forces the table to the bottom
                        #  of the page
 ```
