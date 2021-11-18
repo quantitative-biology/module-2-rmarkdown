@@ -3,9 +3,10 @@ title: "Simple knitr Rmarkdown example -- automatic write-up of simulated data"
 author: "Author name goes here"
 output:
   pdf_document:
+    keep_tex: true
     extra_dependencies:
       mathptmx: null
-      xcolor: ["table=TRUE"]
+      xcolor: ["table"]
       booktabs: null
       wrapfig: null
       float: null
@@ -17,10 +18,22 @@ fontsize: 12pt
 date: "Last compiled on `r format(Sys.time(), '%d %B, %Y')`"
 ---
 
-<!-- This is a comment. The above is the YAML. It includes reference to the file
-     preamble.tex that you need to have in the same folder as
-     rmark-example-pdf.Rmd. Take a quick look at it - in contains some latex
-     packages to include that we have found useful, plus some user-defined commands.
+<!-- This is a comment.
+     The above is called the YAML. It includes settings such as the title,
+     author, fontsize and automated date (see how it calls on R to do that). It
+     also set to output to a pdf, and then keep_tex means to save the .tex file
+     (more on that later), and extra_dependencies specifies latex packages to
+     include. Not all are needed for this document, but these are ones that we
+     have found useful.
+
+	 Important: if you edit the YAML stuff then you must uses spaces, not TABs
+     (the spaces are important). If you ever get an error straight away like
+     this:
+	 "Error in yaml::yaml.load(..., eval.expr = TRUE) :
+        Scanner error: while scanning a plain scalar at line 11, column 14 found
+		a tab character that violate indentation at line 12, column 1"
+	 then double check that you do not have tabs (your editor may automatically
+     add them in).
 
 	 To render this document, in R run
 	   rmarkdown::render("rmark-example-pdf.Rmd")
@@ -51,11 +64,13 @@ knitr::opts_chunk$set(collapse = TRUE,
                       autodep = TRUE,
                       cache = TRUE,
                       fig.align = "center",
-                      fig.pos = "tbp"
-                      #   dpi = 200,
-                      # warning = FALSE,
-                      # message = FALSE,
+                      fig.pos = "tbp",
+                      tab.pos = "tbp"
                       )
+knitr::knit_hooks$set(document = function(x) {
+                                   sub('\\usepackage[]{color}',
+                                       '\\usepackage{xcolor}', x, fixed = TRUE)
+})
 library(kableExtra)
 library(dplyr)
 library(xtable)
@@ -207,7 +222,9 @@ And in Table\ \ref{tab:fit} we show the results of the regression fit.
 kable(coefficients(summary(fit)),
       caption = "Linear regression fit.",
       booktabs = TRUE,
-      label = "fit")
+      label = "fit",
+      position = "b")  # This position argument forces the table to the bottom
+                       #  of the page
 ```
 
 ## Summarise the results
