@@ -1,7 +1,7 @@
 # Introduction to R Markdown
 
-This module consists of text, example code and two exercises to
-get you started using R Markdown.
+This module consists of text, example code, and two exercises to
+gently introduce to the world of R Markdown.
 
 ## Motivation
 
@@ -354,6 +354,40 @@ Also, if you are using Git and GitHub then you would track the `.Rmd` file using
 Git, but add the `.tex` file to your `.gitignore` file since it is an output
 from the `.Rmd` file (there is no need for Git to track each version of it).
 
+## Caching (advanced)
+
+The two example files ran fairly quickly. So making a small edit to the text and
+then re-running the code is not onerous. But if you are producing a large
+complex document and you make some minor text edits, then you do not want to
+have to wait for it to build (and calculate results that have not changed) to
+just check your edits in the resulting `.pdf` or `.html`.
+
+You can add the `cache=TRUE` option to a chunk. The results will then be saved (cached)
+and the code in that chunk *not rerun* when you render the document again,
+unless any part of the code in that chunk has changed (e.g. you changed a `+` to
+a `-`). This is very useful, but you have to be careful and understand how it
+works.
+
+To do so, see the [Cache
+section](https://bookdown.org/yihui/rmarkdown-cookbook/cache.html){target="_blank"}
+of the [R Markdown
+Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/){target="_blank"}. While
+the authors "do not recommend that you set the chunk option `cache = TRUE`
+globally in a document", in our own work we have sometimes done this (as often
+once the results are finalised we are just editing text). But often we will
+clear the cache (remove the directory where all the cached results are saved) to
+re-run the document afresh, to guarantee that all results are
+reproducible. Certainly practice on individual chunks first and play around with
+caching if you wish to use it in your own work.
+
+Another workflow is to have one exploratory R Markdown file that includes
+the analyses and calculations (and saves the results). Then have a write-up R Markdown
+file that loads those results (but does no time-consuming calculations) and
+uses them to quickly build tables and figures. If you do have to re-run the
+analyses then you can do so using the first file, and the results will get
+updated when you then re-run the second file. This would be a good approach for
+writing a manuscript or a thesis.
+
 ## Further reading
 
 As we said, the idea of this module was to give you a simple introduction to
@@ -369,9 +403,23 @@ YAML, the code between the `---` at the top of `rmark-exercise.Rmd` and
 name, can also be used for computer languages other than R, such as Python, SQL,
 Julia, C, and Fortran.
 
-Also see the [RStudio
+Also see the related [R Markdown
+Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/){target="_blank"},
+which provides "practical and relatively short examples to show the interesting
+and useful usage of R Markdown", and supplements the Definitive Guide by making
+it less daunting to figure out how to achieve certain tasks by providing a range
+of examples. Also see
+[RStudio
 introduction](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} if
 you use RStudio.
+
+Finally, there is an R package
+[rticles](https://github.com/rstudio/rticles){target="_blank"} that includes a
+suite of custom R Markdown LaTeX formats for various journals and publishers. We
+haven't tried it, but it looks like it provides some useful templates. At
+Fisheries and Oceans Canada we have built our own R package
+[csasdown](https://github.com/pbs-assess/csasdown){target="_blank"} to conform
+to stylistic requirements for certain documents.
 
 In practice, once you have something working in the style you like, you can just
 copy those settings for each new project. It can be handy to keep a readme file
