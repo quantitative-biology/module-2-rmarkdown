@@ -220,20 +220,21 @@ abline(fit, col="red")
 The *big* feature of dynamically generating reports is when you go back and
 change or update the input data. For example, changing the data in the above
 example and then re-running it to redo the report. The best way to demonstrate
-this is for you to do it in the following Exercise.
+this is for you to do it in Exercise 1.
 
-### Exercise
+### Exercise 1
 
 1. In R do `library(rmarkdown)` to make sure you have the `rmarkdown`
-   package. If not then install it.
+   package. If not then install it with `install.packages("rmarkdown")`.
 
-1. Download [this file](https://raw.githubusercontent.com/quantitative-biology/module-2-rmarkdown/main/rmark-exercise.Rmd)
+1. Download [rmark-exercise.Rmd](https://raw.githubusercontent.com/quantitative-biology/module-2-rmarkdown/main/rmark-exercise.Rmd)
    onto your computer and put it where you want to work on this exercise. Make
    sure it is saved as `rmark-exercise.Rmd` and not `rmark-exercise.txt`.
 
-1. The file is an R Markdown (`.Rmd`) file that you can run by either clicking
-   the `knitr` button in RStudio or doing `rmarkdown::render("rmark-exercise.Rmd")`
-   in R.
+1. The file is an R Markdown (`.Rmd`) file that you can run by either doing
+   `rmarkdown::render("rmark-exercise.Rmd")`
+   in R, or clicking the `knitr` button in RStudio and selecting the `.html`
+   option: TODO add Joe's figure.
 
 1. Check that this has produced ('rendered') an `.html` file document that looks
    similar to what you
@@ -241,9 +242,8 @@ this is for you to do it in the following Exercise.
    content should be). Note that the `.Rmd` file is _not_ repeating all the
    explanations that we gave above, but is a simplified version containing
    the commands, which is why the output won't be identical. (The exact R Markdown
-   file, `module-2-rmarkdown.Rmd`, used to create what you are reading is available on the [GitHub
-   repository for this
-   module](https://github.com/quantitative-biology/module-2-rmarkdown)).
+   file, `module-2-rmarkdown.Rmd`, used to create what you are reading here is
+   available on the [GitHub repository for this module](https://github.com/quantitative-biology/module-2-rmarkdown)).
 
 1. Carefully read through the `.Rmd` file and compare it with what you see in the
    resulting `.html`. There are some comments in there, denoted by
@@ -281,24 +281,53 @@ $y=399.9$?
 
 ## Output format
 
-To keep it simple, in the Exercise we have set the output to be `.html`. For
+Mention no need for multiple output formats **
+
+To keep it simple, in Exercise 1 we set the output to be `.html`. For
 scientific documents, `.pdf` are preferable. For this you will need LaTeX
 installed.
 
 For decades, LaTeX has been the standard typesetting system for writing
-mathematical papers. In 2002, Friedrich Leisch created 'Sweave', to
+mathematical papers. In 2002, Friedrich Leisch created the R package 'Sweave', to
 weave together R code for calculations and LaTeX code for writing up results
-into a .pdf file. (It was called Sweave because S was the precursor language to
+into a `.pdf` file. (It was called `Sweave` because S was the precursor language to
 R, plus I expect Sweave sounded better than
-Rweave). Sweave motivated knitr (to knit together R code with text write ups)
+Rweave). Sweave motivated the R package `knitr` (to knit together R code with text write ups)
 by Yihui Xie, which also allows html and other output formats. R Markdown was
-then created to allow simpler use of knitr, without learning lots of LaTeX
-commands.
+then created to allow simpler use of `knitr`, without learning lots of LaTeX
+commands, though you need LaTeX installed to use R Markdown.
 
-To create `.pdf` output, and use LaTeX for writing equations and
-customising your output, if you don't have LaTeX installed it then see
-the simple instructions another book by Yhiui Xie et al., the [R Markdown
+### Exercise 2
+
+Now download
+[rmark-pdf-example.Rmd](https://raw.githubusercontent.com/quantitative-biology/module-2-rmarkdown/main/rmark-pdf-example.Rmd)
+onto your computer and put it where you want to run it. As before, make
+sure it is saved as `rmark-pdf-example.Rmd` and not `rmark-pdf-example.Rmd`.
+
+Try running it as earlier, either using `rmarkdown::render("rmark-pdf-example.Rmd")`
+in R, or clicking the `knitr` button in RStudio but selecing the `knit-as-pdf` option. If it doesn't run then you
+probably need to install LaTeX (you should get a helpful error message). See the
+simple instructions in another book by Yhiui Xie et al., the [R Markdown
 cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+Go through `rmark-pdf-example.Rmd` carefully, reading the notes in the comments,
+and comparing the `.Rmd` code to the rendered .pdf. I get three warnings (not
+errors) like `Package xcolor Warning: Incompatible color definition on input
+line 283.` It seems to work so don't worry if you get them also.
+
+Using those warnings as a teachable moment, this is why I set `keep_tex = TRUE` in the
+YAML header of `rmark-pdf-example.Rmd`. When you render the document, the
+`rmarkdown::render()` R function uses `knitr::knit()` to run the R code in your
+`.Rmd` file, and then build a LaTeX `.tex` file, which is then run by Latex to
+build a .pdf. It's good to be aware that there are several steps going on here,
+especially when something doesn't work. The warning in the
+previous paragraph is referring to line 283 of the `rmark-pdf-example.tex` file
+(the `.tex` file, not the original `.Rmd` file). The default R Markdown setting
+seems to be to delete the `.tex` file when everything builds okay, and so the
+`.tex` file was getting deleted. So keeping the `.tex` file can be
+helpful to try and debug warnings or errors that need fixing. Generally you want
+to fix warnings when you first see them occurring, but sometimes you just have
+to leave them in as everything seems to be working as intended (as is the case here).
 
 ## Further reading
 
@@ -309,14 +338,15 @@ often where you end up when Googling for how to do something), but you do not
 need to understand all of it (I know that Pandoc is doing stuff behind the
 scenes, but have managed to not need much more than that). [Chapter
 2](https://bookdown.org/yihui/rmarkdown/basics.html) goes through the basics,
-including many things that we glossed over above, such as the code between the
-`---` at the top of `rmark-exercise.Rmd`. For me to explain it properly, I would
-have to refer to the guidebook anyway.
+including many things that we glossed over above, such as more details about
+YAML, the code between the `---` at the top of `rmark-exercise.Rmd` and
+`rmark-pdf-example.Rmd`.
 
 In practice, once you have something working in the style you like, you can just
 copy those settings for each new project. It can be handy to keep a readme file
 of containing commands/options/tips that you use a lot.
 
-### Feedback
+## Feedback
+
 We value your input! Please take the time to let us know how we might improve
 these materials in [this survey](https://forms.gle/vLkcZq7NxPb2ajTQ6).
