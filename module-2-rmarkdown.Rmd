@@ -377,8 +377,16 @@ globally in a document", in our own work we have sometimes done this (as often
 once the results are finalised we are just editing text). But often we will
 clear the cache (remove the directory where all the cached results are saved) to
 re-run the document afresh, to guarantee that all results are
-reproducible. Certainly practice on individual chunks first and play around with
-caching if you wish to use it in your own work.
+reproducible.
+
+Certainly practice on individual chunks first and play around with
+caching if you wish to use it in your own work. To get started, in
+`rmark-pdf-example.Rmd` change the `cache = FALSE` option in the
+`knitr::opts_chunk$set()` call to `cache = TRUE`. Re-running the code will create two
+directories (as named in `knitr::opts_chunk$set()`) that will saved the cached
+versions of chunks and of figures. Re-running the code a second time will then
+use those cached values (because of the `cache=TRUE` setting). Then change a
+piece of code and see which cached files change (by seeing when they were saved).
 
 Another workflow is to have one exploratory R Markdown file that includes
 the analyses and calculations (and saves the results). Then have a write-up R Markdown
@@ -394,8 +402,8 @@ As we said, the idea of this module was to give you a simple introduction to
 using R Markdown. The [Definitive Guide to
 R Markdown](https://bookdown.org/yihui/rmarkdown){target="_blank"} is highly recommended (and
 often where you end up when Googling for how to do something), but you do not
-need to understand all of it (I know that Pandoc is doing stuff behind the
-scenes, but have managed to not need much more than that). [Chapter
+need to understand all of it. For example, I know that Pandoc is doing stuff behind the
+scenes, but have managed to not need to understand much more than that. [Chapter
 2](https://bookdown.org/yihui/rmarkdown/basics.html){target="_blank"} goes through the basics,
 including many things that we glossed over above, such as more details about
 YAML, the code between the `---` at the top of `rmark-exercise.Rmd` and
