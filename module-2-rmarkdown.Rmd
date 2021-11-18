@@ -365,7 +365,11 @@ scenes, but have managed to not need much more than that). [Chapter
 2](https://bookdown.org/yihui/rmarkdown/basics.html){target="_blank"} goes through the basics,
 including many things that we glossed over above, such as more details about
 YAML, the code between the `---` at the top of `rmark-exercise.Rmd` and
-`rmark-pdf-example.Rmd`. Also see the [RStudio
+`rmark-pdf-example.Rmd`. It also explains how R Markdown, despite the 'R' in its
+name, can also be used for computer languages other than R, such as Python, SQL,
+Julia, C, and Fortran.
+
+Also see the [RStudio
 introduction](https://rmarkdown.rstudio.com/lesson-1.html){target="_blank"} if
 you use RStudio.
 
