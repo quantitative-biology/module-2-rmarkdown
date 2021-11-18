@@ -237,7 +237,7 @@ this is for you to do it in Exercise 1.
 1. The file is an R Markdown (`.Rmd`) file that you can run by either doing
    `rmarkdown::render("rmark-exercise.Rmd")`
    in R, or clicking the `knitr` button in RStudio and selecting the `.html`
-   option: TODO add Joe's figure.
+   option. See the RStudio section at the end of this module for help using RStudio.
 
 1. Check that this has produced ('rendered') an `.html` file document that looks
    similar to what you
@@ -432,6 +432,54 @@ to stylistic requirements for certain documents.
 In practice, once you have something working in the style you like, you can just
 copy those settings for each new project. It can be handy to keep a readme file
 of containing commands/options/tips that you use a lot.
+
+## Using RStudio
+
+Here are some screenshots for using RStudio (thanks to Joe Watson).
+
+To knit a document:
+
+```{r, echo = FALSE, fig.alt = "Screenshot showing how to knit in RStudio.", width="100%"}
+knitr::include_graphics("Step_1_Knit.png")
+```
+
+and then select the format with
+
+```{r, echo = FALSE, fig.alt = "Screenshot showing how to select knit output in RStudio.", width="100%", fig.align = "center"}
+knitr::include_graphics("Step_2_Choose_Format.png")
+```
+
+Be sure to click the correct format, though RStudio does not seem to over-ride the `output` option
+set in the `.Rmd` file (in the YAML at the top).
+
+You need to view the .html output in Exercise 1 in a browser, either clicking on
+the resulting file or doing:
+
+```{r, echo = FALSE, fig.alt = "Screenshot showing how to open .html file in RStudio.", width="100%"}
+knitr::include_graphics("Step_3_View_in_Dedicated_Browser.png")
+```
+
+To run a line of code you can click Ctrl-Enter, and to run a chunk you can click
+on the green triangle:
+
+```{r, echo = FALSE, fig.alt = "Screenshot showing how to run a chunk in RStudio.", width="100%"}
+knitr::include_graphics("Step_4_Run_code_within_a_single_chunk.png")
+```
+
+and click the green rectangle to run all the preceding chunks also (useful if
+variables have changed):
+
+```{r, echo = FALSE, fig.alt = "Screenshot showing how to run all code preceding a chunk.", width="100%"}
+knitr::include_graphics("Step_5_Run_all_code_preceding_chunk.png")
+```
+
+If you have issues with using a mouse too much, or would rather just type
+commands (especially if you have vision issues) and prefer a less cluttered
+interface, then I'd recommend [Emacs Speaks
+Statistics](https://ess.r-project.org/){target="_blank"}, which lets you run R
+from the text editor Emacs. You can also use Emacs for editing all types of files (it
+highlights code very well), so you only need to learn one editor for all your
+needs.
 
 ## Feedback
 
