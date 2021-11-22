@@ -1,4 +1,4 @@
-# Introduction to R Markdown
+# R Markdown
 
 This module consists of text, example code, and two exercises to
 gently introduce to the world of R Markdown.
