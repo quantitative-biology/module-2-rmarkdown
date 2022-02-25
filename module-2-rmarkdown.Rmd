@@ -51,13 +51,13 @@ for over 100 species of British Columbia
 groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html){target="_blank"}.
 For each of 113 species, we produced two pages of figures:
 
-```{r, echo = FALSE, fig.alt = "First example page showing multiple figures of data.", width="100%"}
+```{r, echo = FALSE, fig.cap = "First example page showing multiple figures of data.", fig.alt = "Screenshot of a page with a complex layout of 23 figures.", width="100%"}
 knitr::include_graphics("silvergray-rockfish-1.png")
 ```
 
 and
 
-```{r, echo = FALSE, fig.alt = "Second example page showing multiple figures of data.", width="100%"}
+```{r, echo = FALSE, fig.cap = "Second example page showing multiple figures of data.", fig.alt = "Second example page showing further figures of data.", width="100%"}
 knitr::include_graphics("silvergray-rockfish-2.png")
 ```
 
@@ -194,7 +194,7 @@ because of settings we have, but pretty much everything is tweakable with the
 
 Now to plot the data:
 
-```{r plot, fig.alt = "Simple plot of the 50 simulated data points."}
+```{r plot, fig.cap = "Simple plot of the 50 simulated data points.", fig.alt = "Simple plot of the 50 simulated data points."}
 plot(x, y)
 ```
 
@@ -213,7 +213,7 @@ kable(coefficients(summary(fit)),
 ```
 
 And create a plot:
-```{r plotfit, fig.alt = "Simple plot of the 50 simulated data points with the fitted regression added in red."}
+```{r plotfit, fig.cap = "Simple plot of the 50 simulated data points with the fitted regression added in red.", fig.alt = "Same simple plot with simple regression line added."}
 plot(x, y)
 abline(fit, col="red")
 ```
@@ -439,13 +439,13 @@ Here are some screenshots for using RStudio (thanks to Joe Watson).
 
 To knit a document:
 
-```{r, echo = FALSE, fig.alt = "Screenshot showing how to knit in RStudio.", width="100%"}
+```{r, echo = FALSE, fig.cap = "Screenshot showing how to knit in RStudio.", fig.cap = "Screenshot highlighting the knit button in RStudio.", width="100%"}
 knitr::include_graphics("Step_1_Knit.png")
 ```
 
 and then select the format with
 
-```{r, echo = FALSE, fig.alt = "Screenshot showing how to select knit output in RStudio.", width="100%", fig.align = "center"}
+```{r, echo = FALSE, fig.cap = "Screenshot showing how to select knit output in RStudio.", "Screenshot showing knit options in RStudio.", width="100%", fig.align = "center"}
 knitr::include_graphics("Step_2_Choose_Format.png")
 ```
 
@@ -455,23 +455,25 @@ set in the `.Rmd` file (in the YAML at the top).
 You need to view the .html output in Exercise 1 in a browser, either clicking on
 the resulting file or doing:
 
-```{r, echo = FALSE, fig.alt = "Screenshot showing how to open .html file in RStudio.", width="100%"}
+```{r, echo = FALSE, fig.cap = "Screenshot showing how to open .html file in RStudio.", fig.cap = "Screenshot highlighting the open in browser button in RStudio.", width="100%"}
 knitr::include_graphics("Step_3_View_in_Dedicated_Browser.png")
 ```
 
 To run a line of code you can click Ctrl-Enter, and to run a chunk you can click
 on the green triangle:
 
-```{r, echo = FALSE, fig.alt = "Screenshot showing how to run a chunk in RStudio.", width="100%"}
+```{r, echo = FALSE, fig.cap = "Screenshot showing how to run a chunk in RStudio.", fig.alt = "Screenshot highlighting the green triangle run a chunk in RStudio.", width="100%"}
 knitr::include_graphics("Step_4_Run_code_within_a_single_chunk.png")
 ```
 
 and click the green rectangle to run all the preceding chunks also (useful if
 variables have changed):
 
-```{r, echo = FALSE, fig.alt = "Screenshot showing how to run all code preceding a chunk.", width="100%"}
+```{r, echo = FALSE, fig.cap = "Screenshot showing how to run all code preceding a chunk.", fig.alt = "Screenshot showing the green rectangle to click to run all code preceding a chunk.", width="100%"}
 knitr::include_graphics("Step_5_Run_all_code_preceding_chunk.png")
 ```
+
+## Using Emacs for R (and everything else)
 
 If you have issues with using a mouse too much, or would rather just type
 commands (especially if you have vision issues) and prefer a less cluttered
