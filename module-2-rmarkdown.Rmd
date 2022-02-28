@@ -6,7 +6,7 @@ gently introduce to the world of R Markdown.
 ## Motivation
 
 ```{r setup2, echo=FALSE}
-knitr::opts_chunk$set(comment = "")
+
 ```
 
 Say you were sent some tree data from a colleague, consisting of lengths and diameters
