@@ -15,7 +15,9 @@ R code to analyse the data. Your code also produces beautiful figures and tables
 that you then manually copied into a Word document. You also had to write lots of
 text, including calculations such as the simple
 
-`The average tree height was 10.1 m.`
+```{r wordtext1r, eval=FALSE, echo=TRUE}
+The average tree height was 10.1 m.
+```
 
 Then your colleague sheepishly tells you that someone introduced an error when
 extracing the data from their tree-size database, and so
@@ -51,13 +53,13 @@ for over 100 species of British Columbia
 groundfish](https://www.dfo-mpo.gc.ca/csas-sccs/Publications/ResDocs-DocRech/2019/2019_041-eng.html){target="_blank"}.
 For each of 113 species, we produced two pages of figures:
 
-```{r, echo = FALSE, fig.cap = "First example page showing multiple figures of data.", fig.alt = "Screenshot of a page with a complex layout of 23 figures.", width="100%"}
+```{r silvergray1, echo = FALSE, fig.cap = "First example page showing multiple figures of data.", fig.alt = "Screenshot of a page with a complex layout of 23 figures.", width="100%"}
 knitr::include_graphics("silvergray-rockfish-1.png")
 ```
 
 and
 
-```{r, echo = FALSE, fig.cap = "Second example page showing multiple figures of data.", fig.alt = "Second example page showing further figures of data.", width="100%"}
+```{r silvergray2, echo = FALSE, fig.cap = "Second example page showing multiple figures of data.", fig.alt = "Second example page showing further figures of data.", width="100%"}
 knitr::include_graphics("silvergray-rockfish-2.png")
 ```
 
@@ -92,24 +94,26 @@ what you can work towards.
 In the above tree example, if using Word, for example, you would have a sentence
 that says
 
-`The average tree height was 10.1 m`
+```{r wordtext2, eval=FALSE, echo=TRUE}
+The average tree height was 10.1 m.
+```
 
-The "10.1" is hard-wired into your text, and you typed it on from the value
+The "10.1" is hard-wired into your text, and you typed it in from the value
 "10.1" that your R code calculated (in a variable you calculated, let's say you
 called it `avge_height`).
 
 In your R Markdown document you have your R code _and_ your text write up. You
 would equivalently have:
 
-```{r, eval=FALSE}
-The average tree height was `r avge_height` m
+```{r treetext, eval=FALSE, echo=TRUE}
+The average tree height was `r avge_height` m.
 ```
 
 Instead of "10.1" you refer _directly_ to the variable `avge_height` that you
 have already calculated. When you 'render' your R Markdown document (convert it
 from code into .pdf, .html or other formats), it
 automatically fills in the `avge_height` value as "10.1". The
-```{r, eval=FALSE}
+```{r rrr, eval=FALSE, echo=TRUE}
 `r
 ```
 means that the next bit of code (until the next backtick) should be evaluated
@@ -129,7 +133,7 @@ you will download and run the code in the exercise.
 **Generate data**
 
 First we'll need some libraries:
-```{r rmarklibs, message=FALSE, warning=FALSE}
+```{r rmarklibs, message=FALSE, warning=FALSE, echo=TRUE}
 library(kableExtra)
 library(dplyr)
 library(xtable)
@@ -137,7 +141,7 @@ library(xtable)
 
 Now generate some data:
 
-```{r generate}
+```{r generate, echo=TRUE}
 set.seed(42)
 n <- 50                      # sample size
 x <- 1:n
@@ -154,15 +158,15 @@ We can also embed results from R within sentences, for example:
 We have a sample size of `r n`.
 
 This is done (as mentioned above) by the code:
-```{r eval=FALSE}
-We have a sample size of `r n`
+```{r rmdexample, eval=FALSE, echo=TRUE}
+We have a sample size of `r n`.
 ```
 
 Note that you need the space straight after the `r`.
 
 We can also automatically say that the maximum value of the data is `r max(y)`, or round it to a
 whole number: the maximum value of the data is `r round(max(y))`. These were done by:
-```{r eval=FALSE}
+```{r rmdexample2, eval=FALSE, echo=TRUE}
 the maximum value of the data is `r max(y)`
 
 the maximum value of the data is `r round(max(y))`
@@ -173,7 +177,7 @@ the maximum value of the data is `r round(max(y))`
 Let's combine the data in a tibble (think of it as a data frame if you don't
 know what that is):
 
-```{r showdata}
+```{r showdata, echo=TRUE}
 data <- tibble(x, y)
 data
 ```
@@ -181,7 +185,7 @@ data
 (only the first 10 rows get printed here thanks to dplyr).
 
 To have a proper table, we can do
-```{r kable}
+```{r kable, echo=TRUE}
 kable(data[1:10,],
       caption = "The first rows of my data.")
 ```
@@ -194,26 +198,26 @@ because of settings we have, but pretty much everything is tweakable with the
 
 Now to plot the data:
 
-```{r plot, fig.cap = "Simple plot of the 50 simulated data points.", fig.alt = "Simple plot of the 50 simulated data points."}
+```{r plot, fig.cap = "Simple plot of the 50 simulated data points.", fig.alt = "Simple plot of the 50 simulated data points.", echo=TRUE}
 plot(x, y)
 ```
 
 To fit and then print the summary regression output from R:
 
-```{r regression}
+```{r regression, echo=TRUE}
 fit <- lm(y ~ x)
 print(summary(fit))
 ```
 
 And for a report we can produce a simple table (including a caption) of output and the regression fit:
 
-```{r fit}
+```{r fit, echo=TRUE}
 kable(coefficients(summary(fit)),
       caption = "Linear regression fit.")
 ```
 
 And create a plot:
-```{r plotfit, fig.cap = "Simple plot of the 50 simulated data points with the fitted regression added in red.", fig.alt = "Same simple plot with simple regression line added."}
+```{r plotfit, fig.cap = "Simple plot of the 50 simulated data points with the fitted regression added in red.", fig.alt = "Same simple plot with simple regression line added.", echo=TRUE}
 plot(x, y)
 abline(fit, col="red")
 ```
@@ -275,8 +279,9 @@ will be included in the file):
 So the maximum value of $y$ is `r round(max(y))`, which is
 `r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
 the special value of 400. The "greater than" or "less than" part is given by
-```{r swanky, eval=FALSE}
-`r ifelse(max(y)>400, paste("greater than"), paste("less than"))`
+
+```{r swanky, eval=FALSE, echo=TRUE, width.cutoff = 80}
+`r ifelse(max(y)>400, paste("greater than"), paste("less than"))
 ```
 
 But you have to be careful and think about all possibilities -- what if
@@ -439,13 +444,13 @@ Here are some screenshots for using RStudio (thanks to Joe Watson).
 
 To knit a document:
 
-```{r, echo = FALSE, fig.cap = "Screenshot showing how to knit in RStudio.", fig.cap = "Screenshot highlighting the knit button in RStudio.", width="100%"}
+```{r rstudio1, echo = FALSE, fig.cap = "Screenshot showing how to knit in RStudio.", fig.cap = "Screenshot highlighting the knit button in RStudio.", width="100%"}
 knitr::include_graphics("Step_1_Knit.png")
 ```
 
 and then select the format with
 
-```{r, echo = FALSE, fig.cap = "Screenshot showing how to select knit output in RStudio.", "Screenshot showing knit options in RStudio.", width="100%", fig.align = "center"}
+```{r rstudio2, echo = FALSE, fig.cap = "Screenshot showing how to select knit output in RStudio.", fig.alt = "Screenshot showing knit options in RStudio.", width="100%", fig.align = "center"}
 knitr::include_graphics("Step_2_Choose_Format.png")
 ```
 
@@ -455,21 +460,21 @@ set in the `.Rmd` file (in the YAML at the top).
 You need to view the .html output in Exercise 1 in a browser, either clicking on
 the resulting file or doing:
 
-```{r, echo = FALSE, fig.cap = "Screenshot showing how to open .html file in RStudio.", fig.cap = "Screenshot highlighting the open in browser button in RStudio.", width="100%"}
+```{r rstudio3, echo = FALSE, fig.cap = "Screenshot showing how to open .html file in RStudio.", fig.cap = "Screenshot highlighting the open in browser button in RStudio.", width="100%"}
 knitr::include_graphics("Step_3_View_in_Dedicated_Browser.png")
 ```
 
 To run a line of code you can click Ctrl-Enter, and to run a chunk you can click
 on the green triangle:
 
-```{r, echo = FALSE, fig.cap = "Screenshot showing how to run a chunk in RStudio.", fig.alt = "Screenshot highlighting the green triangle run a chunk in RStudio.", width="100%"}
+```{r rstudio4, echo = FALSE, fig.cap = "Screenshot showing how to run a chunk in RStudio.", fig.alt = "Screenshot highlighting the green triangle run a chunk in RStudio.", width="100%"}
 knitr::include_graphics("Step_4_Run_code_within_a_single_chunk.png")
 ```
 
 and click the green rectangle to run all the preceding chunks also (useful if
 variables have changed):
 
-```{r, echo = FALSE, fig.cap = "Screenshot showing how to run all code preceding a chunk.", fig.alt = "Screenshot showing the green rectangle to click to run all code preceding a chunk.", width="100%"}
+```{r rstudio5, echo = FALSE, fig.cap = "Screenshot showing how to run all code preceding a chunk.", fig.alt = "Screenshot showing the green rectangle to click to run all code preceding a chunk.", width="100%"}
 knitr::include_graphics("Step_5_Run_all_code_preceding_chunk.png")
 ```
 
