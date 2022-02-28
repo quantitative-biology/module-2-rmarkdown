@@ -5,10 +5,6 @@ gently introduce to the world of R Markdown.
 
 ## Motivation
 
-```{r setup2, echo=FALSE}
-
-```
-
 Say you were sent some tree data from a colleague, consisting of lengths and diameters
 of some trees repeatedly measured over 30 years. You then spent a month writing lots of
 R code to analyse the data. Your code also produces beautiful figures and tables,
